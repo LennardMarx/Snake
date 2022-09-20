@@ -56,6 +56,8 @@ int main()
 
     int xMouse, yMouse;
 
+    // test
+
     // Using SDL_ttf
     TTF_Init();
     Text gamePaused("Game Paused!", 35, 70, 120, 25, 'w', gui);
