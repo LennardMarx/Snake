@@ -56,7 +56,7 @@ int main()
 
     int xMouse, yMouse;
 
-    // test
+    // noch ein test
 
     // Using SDL_ttf
     TTF_Init();
