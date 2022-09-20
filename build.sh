@@ -1,0 +1,1 @@
+g++ -g -std=c++17 ./src/*.cpp -I./include -o ./bin/snake -lSDL2 -lSDL2_ttf -ldl
