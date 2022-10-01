@@ -222,7 +222,6 @@ int main()
                         {
                             highscores_w << i << '\t';
                         }
-
                         highscores_w.close();
                         score_check = true;
                     }
