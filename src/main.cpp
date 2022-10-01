@@ -217,7 +217,6 @@ int main()
                         }
 
                         highscores_w.open("/home/lennardmarx/UTwente/Programming/Snake/highscores.txt");
-
                         for (const auto &i : highscores)
                         {
                             highscores_w << i << '\t';
