@@ -7,6 +7,8 @@
 #include <string>
 #include <vector>
 #include <SDL2/SDL_ttf.h>
+#include <fstream>
+#include <algorithm>
 
 #include "/home/lennardmarx/UTwente/Programming/Snake/include/Apple.h"
 #include "/home/lennardmarx/UTwente/Programming/Snake/include/SnakeSegment.h"
@@ -65,6 +67,10 @@ int main()
     Text gameOverMenu("Main Menu", 35, 110, 100, 20, 'w', gui);
     Text gameOverMenuYellow("Main Menu", 35, 110, 100, 20, 'y', gui);
 
+    // highscores
+
+    bool score_check = false;
+
     while (!quit)
     {
         frameStart = SDL_GetTicks(); // limit framerate (see end of while loop)
@@ -83,7 +89,8 @@ int main()
                 // to check where mouse is on screen
                 // std::cout << xMouse << ", " << yMouse << std::endl;
                 // std::cout << menu << std::endl;
-
+                segmentCount = 1; // reset Count of segments
+                score_check = false;
                 gui.clear(); // render screen black
                 if (menu == true)
                 {
@@ -114,6 +121,7 @@ int main()
             }
             else if (menu == false)
             {
+
                 gui.clear(); // render screen black
 
                 gui.setDrawColor(204, 0, 0, 255);
@@ -172,13 +180,53 @@ int main()
                 if (game_over)
                 {
                     // std::cout << xMouse << ", " << yMouse << std::endl;
-
+                    // std::cout << snakeBody.size() << std::endl;
                     gameOver.renderCopy(gui);
                     gameOverMenu.renderCopy(gui);
                     std::string score_text = "Score: " + std::to_string(segmentCount);
                     const char *score_text_conv = score_text.c_str();
                     Text scoreText(score_text_conv, 35, 83, 100, 20, 'w', gui);
                     scoreText.renderCopy(gui);
+                    while (snakeBody.size() >= 2)
+                    {
+                        snakeBody.pop_back(); // removing the body segments
+                    }
+                    // saving score
+                    if (score_check == false)
+                    {
+                        std::ofstream highscores_w;
+                        std::ifstream highscores_r("/home/lennardmarx/UTwente/Programming/Snake/highscores.txt");
+                        std::vector<int> highscores;
+                        int highscore;
+                        while (highscores_r >> highscore)
+                        {
+                            highscores.push_back(highscore);
+                        }
+                        highscores_r.close();
+
+                        highscores.push_back(segmentCount);
+
+                        std::sort(highscores.begin(), highscores.end(), std::greater<int>());
+                        // only save top 10
+                        if (highscores.size() > 10) // if score sheet not filled yet
+                        {
+                            while (highscores.size() > 10)
+                            {
+                                highscores.pop_back();
+                            }
+                        }
+
+                        highscores_w.open("/home/lennardmarx/UTwente/Programming/Snake/highscores.txt");
+
+                        for (const auto &i : highscores)
+                        {
+                            highscores_w << i << '\t';
+                        }
+
+                        highscores_w.close();
+                        score_check = true;
+                    }
+
                     if (xMouse > 108 && xMouse < 408 && yMouse > 340 && yMouse < 380)
                     {
                         gameOverMenuYellow.renderCopy(gui);
@@ -265,6 +313,7 @@ int main()
                     break;
                 }
         }
+
         // frame time to limit FPS
         frameTime = SDL_GetTicks() - frameStart;
         if (frameDelay > frameTime)
