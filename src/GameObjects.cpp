@@ -34,6 +34,7 @@ SnakeSegment::~SnakeSegment() // destructor
 {
 }
 
+// set and get segment position
 void SnakeSegment::setPosition(int _x, int _y)
 {
     setPreviousPosition();
@@ -79,6 +80,7 @@ std::string SnakeHead::getDirection()
     return direction;
 }
 
+// moving snake head into set position
 void SnakeHead::moveSnake(UI &ui)
 {
     // let snake appear at other side of screen

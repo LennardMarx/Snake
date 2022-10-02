@@ -16,8 +16,8 @@ public:
     const int sizeX;
     const int sizeY;
 
-    UI(int, int);
-    ~UI();
+    UI(int, int); // constructor
+    ~UI();        // desctructor
 
     void clear();   // makes screen black
     void present(); // renders visualized things
@@ -29,6 +29,7 @@ public:
     // 9x9 "circle"
     void drawCircle(int, int);
 
+    // changing the draw color on the go
     void setDrawColor(uint8_t r, uint8_t g, uint8_t b, uint8_t a);
 
     SDL_Renderer *&getRenderer(); // pointer reference to the renderer

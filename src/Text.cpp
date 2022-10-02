@@ -1,7 +1,9 @@
 #include "../include/Text.h"
 
+// constructor
 Text::Text(std::string _text, int _x, int _y, int _w, int _h, char _color, UI &_ui)
 {
+    // setting the text color
     text_to_char = _text.c_str();
     if (_color == 'w')
     {
@@ -14,9 +16,10 @@ Text::Text(std::string _text, int _x, int _y, int _w, int _h, char _color, UI &_
     surfaceMessage = TTF_RenderText_Solid(myFont, text_to_char, color);
     Message = SDL_CreateTextureFromSurface(_ui.getRenderer(), surfaceMessage);
     SDL_FreeSurface(surfaceMessage);
-    rectPosition(_x, _y, _w, _h);
+    rectPosition(_x, _y, _w, _h); // position and size of the text
 }
 
+// destructor
 Text::~Text()
 {
     if (Message)

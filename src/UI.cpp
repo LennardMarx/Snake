@@ -7,11 +7,13 @@
 
 #include "/home/lennardmarx/UTwente/Programming/Snake/include/UI.h"
 
+// constructor
 UI::UI(int sizeX, int sizeY) : sizeX(sizeX), sizeY(sizeY)
 {
     initialize(sizeX, sizeY);
 }
 
+// destructor
 UI::~UI()
 {
     if (renderer)
@@ -21,6 +23,7 @@ UI::~UI()
     SDL_Quit();
 }
 
+// making everything black
 void UI::clear()
 {
     setDrawColor(0, 0, 0, 255);
@@ -28,6 +31,7 @@ void UI::clear()
     setDrawColor(255, 255, 255, 255);
 }
 
+// showing everything rendered
 void UI::present()
 {
     SDL_RenderPresent(renderer);
@@ -93,11 +97,13 @@ void UI::drawCircle(int x, int y)
     }
 }
 
+// changing draw color on the go
 void UI::setDrawColor(uint8_t r, uint8_t g, uint8_t b, uint8_t a)
 {
     SDL_SetRenderDrawColor(renderer, r, g, b, a);
 }
 
+// initializing window, renderer and setting size / position
 void UI::initialize(int sizeX, int sizeY)
 {
     SDL_Init(SDL_INIT_EVERYTHING);

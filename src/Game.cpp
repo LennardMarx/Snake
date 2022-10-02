@@ -82,15 +82,15 @@ void Game::play()
             {
                 // to check where mouse is on screen
                 // std::cout << xMouse << ", " << yMouse << std::endl;
-                // std::cout << menu << std::endl;
                 segmentCount = 1; // reset Count of segments
                 score_check = false;
                 gui.clear(); // render screen black
                 if (menu == true)
                 {
-                    main_menu.Draw(0, 0, 180, 180); // game background
+                    main_menu.Draw(0, 0, 180, 180); // main menu background
                     main_menu.Render(gui.getRenderer());
                 }
+                // check if mouse hovers over the "Start Game" button
                 if (xMouse > 95 && xMouse < 465 && yMouse > 235 && yMouse < 285)
                 {
                     start_game_image.Draw(0, 0, 180, 180);
@@ -101,6 +101,7 @@ void Game::play()
                 {
                     startgame_hover = false;
                 }
+                // check if mouse hovers over the "Highscores" button
                 if (xMouse > 80 && xMouse < 470 && yMouse > 350 && yMouse < 410)
                 {
                     highscores_image.Draw(0, 0, 180, 180);
@@ -111,9 +112,11 @@ void Game::play()
                 {
                     highscores_hover = false;
                 }
+                // show highscores screen
                 if (highscores_screen == true)
                 {
                     gui.clear();
+                    // UNNECESSARY IF ONLY DRAWING TEXT"!!! -> mabye also make struct with texts
                     std::string highscore_title = "Highscores";
                     const char *highscore_title_conv = highscore_title.c_str();
                     Text highscore_title_text(highscore_title_conv, 40, 25, 100, 25, 'w', gui);
@@ -122,6 +125,7 @@ void Game::play()
                     const char *highscore_back_conv = highscore_back.c_str();
                     Text highscore_back_text(highscore_back_conv, 3, 2, 40, 15, 'w', gui);
                     highscore_back_text.renderCopy(gui);
+                    // check if mouse hovers over "back" button
                     if (xMouse > 0 && xMouse < 130 && yMouse > 0 && yMouse < 45)
                     {
                         Text highscore_back_text(highscore_back_conv, 3, 2, 40, 15, 'y', gui);
@@ -222,24 +226,29 @@ void Game::play()
                 if (game_over)
                 {
                     // std::cout << xMouse << ", " << yMouse << std::endl;
-                    // std::cout << snakeBody.size() << std::endl;
+
+                    // draw game over screen
                     gameOver.renderCopy(gui);
                     gameOverMenu.renderCopy(gui);
                     std::string score_text = "Score: " + std::to_string(segmentCount);
                     const char *score_text_conv = score_text.c_str();
                     Text scoreText(score_text_conv, 35, 83, 100, 20, 'w', gui);
                     scoreText.renderCopy(gui);
+
+                    // removing the body segments to reset snake
                     while (snakeBody.size() >= 2)
                     {
-                        snakeBody.pop_back(); // removing the body segments
+                        snakeBody.pop_back();
                     }
-                    // saving score
+                    // saving score (only once to not override -> actually solved by the sorting, but still nice)
                     if (score_check == false)
                     {
-
+                        // add the current score to the highscores vector
                         highscores.push_back(segmentCount);
 
+                        // sort the highscores from best to worst
                         std::sort(highscores.begin(), highscores.end(), std::greater<int>());
+
                         // only save top 10
                         if (highscores.size() > 10) // if score sheet not filled yet
                         {
@@ -249,6 +258,7 @@ void Game::play()
                             }
                         }
 
+                        // saving the updated score list to the text file
                         highscores_w.open("/home/lennardmarx/UTwente/Programming/Snake/highscores/highscores.txt");
                         for (const auto &i : highscores)
                         {
@@ -258,6 +268,7 @@ void Game::play()
                         score_check = true;
                     }
 
+                    // check if mouse hovers over "back to main menu"
                     if (xMouse > 108 && xMouse < 408 && yMouse > 340 && yMouse < 380)
                     {
                         gameOverMenuYellow.renderCopy(gui);
@@ -344,7 +355,6 @@ void Game::play()
                     if (highscores_hover == true)
                     {
                         highscores_screen = true;
-                        // std::cerr << "Hilfe!" << std::endl;
                     }
                     if (highcore_back_hover == true)
                     {

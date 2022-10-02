@@ -47,7 +47,7 @@ public:
     virtual void drawSegment(UI &);
 
 protected:
-    int x, y, x2, y2;
+    int x, y, x2, y2; // protected member variable to store coordinates
 };
 
 //=============== Snake Head ====================================
@@ -63,13 +63,15 @@ public:
     void setDirection(std::string);
     std::string getDirection();
 
+    // moving snake into set direction
     void moveSnake(UI &);
 
+    // polymorphism from inherited drawSegment to have different "Sprite" for the head
     void drawSegment(UI &) override;
 
 private:
-    std::string direction;
-    bool teleportCheck;
+    std::string direction; // saving current direction
+    bool teleportCheck;    // check if snake "teleports" from wall to wall (borderless)
 };
 
 #endif
