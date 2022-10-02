@@ -31,6 +31,8 @@ void Game::play()
     bool startgame_hover = false;
     bool highscores_hover = false;
     bool game_over_menu_hover = false;
+    bool highscores_screen = false;
+    bool highcore_back_hover = false;
 
     std::string lastDirection;
 
@@ -53,6 +55,15 @@ void Game::play()
     // highscores
 
     bool score_check = false;
+    std::ofstream highscores_w;
+    std::vector<int> highscores;
+    int highscore;
+    std::ifstream highscores_r("/home/lennardmarx/UTwente/Programming/Snake/highscores/highscores.txt");
+    while (highscores_r >> highscore)
+    {
+        highscores.push_back(highscore);
+    }
+    highscores_r.close();
 
     while (!quit)
     {
@@ -99,6 +110,48 @@ void Game::play()
                 else
                 {
                     highscores_hover = false;
+                }
+                if (highscores_screen == true)
+                {
+                    gui.clear();
+                    std::string highscore_title = "Highscores";
+                    const char *highscore_title_conv = highscore_title.c_str();
+                    Text highscore_title_text(highscore_title_conv, 40, 25, 100, 25, 'w', gui);
+                    highscore_title_text.renderCopy(gui);
+                    std::string highscore_back = "< Back";
+                    const char *highscore_back_conv = highscore_back.c_str();
+                    Text highscore_back_text(highscore_back_conv, 3, 2, 40, 15, 'w', gui);
+                    highscore_back_text.renderCopy(gui);
+                    if (xMouse > 0 && xMouse < 130 && yMouse > 0 && yMouse < 45)
+                    {
+                        Text highscore_back_text(highscore_back_conv, 3, 2, 40, 15, 'y', gui);
+                        highscore_back_text.renderCopy(gui);
+                        highcore_back_hover = true;
+                    }
+                    else
+                    {
+                        highcore_back_hover = false;
+                    }
+                    std::string highscore_1 = "1st: " + std::to_string(highscores.at(0));
+                    std::string highscore_2 = "2nd: " + std::to_string(highscores.at(1));
+                    std::string highscore_3 = "3rd: " + std::to_string(highscores.at(2));
+                    std::string highscore_4 = "4th: " + std::to_string(highscores.at(3));
+                    std::string highscore_5 = "5th: " + std::to_string(highscores.at(4));
+                    const char *highscore_1_conv = highscore_1.c_str();
+                    const char *highscore_2_conv = highscore_2.c_str();
+                    const char *highscore_3_conv = highscore_3.c_str();
+                    const char *highscore_4_conv = highscore_4.c_str();
+                    const char *highscore_5_conv = highscore_5.c_str();
+                    Text highscore_1_text(highscore_1_conv, 65, 55, 50, 15, 'w', gui);
+                    Text highscore_2_text(highscore_2_conv, 65, 75, 50, 15, 'w', gui);
+                    Text highscore_3_text(highscore_3_conv, 65, 95, 50, 15, 'w', gui);
+                    Text highscore_4_text(highscore_4_conv, 65, 115, 50, 15, 'w', gui);
+                    Text highscore_5_text(highscore_5_conv, 65, 135, 50, 15, 'w', gui);
+                    highscore_1_text.renderCopy(gui);
+                    highscore_2_text.renderCopy(gui);
+                    highscore_3_text.renderCopy(gui);
+                    highscore_4_text.renderCopy(gui);
+                    highscore_5_text.renderCopy(gui);
                 }
                 gui.present();
             }
@@ -178,21 +231,11 @@ void Game::play()
                     scoreText.renderCopy(gui);
                     while (snakeBody.size() >= 2)
                     {
-
                         snakeBody.pop_back(); // removing the body segments
                     }
                     // saving score
                     if (score_check == false)
                     {
-                        std::ofstream highscores_w;
-                        std::ifstream highscores_r("/home/lennardmarx/UTwente/Programming/Snake/highscores/highscores.txt");
-                        std::vector<int> highscores;
-                        int highscore;
-                        while (highscores_r >> highscore)
-                        {
-                            highscores.push_back(highscore);
-                        }
-                        highscores_r.close();
 
                         highscores.push_back(segmentCount);
 
@@ -298,8 +341,16 @@ void Game::play()
                         game_over = false;
                         game_over_menu_hover = false;
                     }
-
-                    // std::cout << "Hilfe!" << std::endl;
+                    if (highscores_hover == true)
+                    {
+                        highscores_screen = true;
+                        // std::cerr << "Hilfe!" << std::endl;
+                    }
+                    if (highcore_back_hover == true)
+                    {
+                        highscores_screen = false;
+                        highcore_back_hover = false;
+                    }
                     break;
                 }
         }
