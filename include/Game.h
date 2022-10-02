@@ -13,9 +13,7 @@
 #include <fstream>
 #include <algorithm>
 
-#include "../include/Apple.h"
-#include "/home/lennardmarx/UTwente/Programming/Snake/include/SnakeSegment.h"
-#include "/home/lennardmarx/UTwente/Programming/Snake/include/SnakeHead.h"
+#include "/home/lennardmarx/UTwente/Programming/Snake/include/GameObjects.h"
 #include "/home/lennardmarx/UTwente/Programming/Snake/include/UI.h"
 #include "../include/ResourceManager.hpp"
 #include "../include/TexturedRectangle.hpp"
@@ -24,6 +22,8 @@
 class Game
 {
 public:
+    Game();
+    ~Game();
     void play();
 };
 

@@ -1,5 +1,8 @@
 #include "Game.h"
 
+Game::Game(){};
+Game::~Game(){};
+
 void Game::play()
 {
     const int FPS = 10;                // set FPS
@@ -99,6 +102,9 @@ void Game::play()
                 }
                 gui.present();
             }
+
+            //================================= when game starts ==============================================
+
             else if (menu == false)
             {
 
@@ -157,6 +163,9 @@ void Game::play()
                 {
                     snakeBody[i]->drawSegment(gui);
                 }
+
+                //=========================== Game Over =============================================================
+
                 if (game_over)
                 {
                     // std::cout << xMouse << ", " << yMouse << std::endl;
@@ -219,6 +228,8 @@ void Game::play()
                 gui.present(); // render screen
             }
         } // end else (pause game)
+
+        //========================= Event checks ===============================================================
 
         SDL_Event event;
         while (SDL_PollEvent(&event))
