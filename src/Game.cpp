@@ -58,7 +58,7 @@ void Game::play()
     std::ofstream highscores_w;
     std::vector<int> highscores;
     int highscore;
-    std::ifstream highscores_r("/home/lennardmarx/UTwente/Programming/Snake/highscores/highscores.txt");
+    std::ifstream highscores_r("/home/lennardmarx/UTwente/Programming/Snake/highscores.txt");
     while (highscores_r >> highscore)
     {
         highscores.push_back(highscore);
@@ -259,7 +259,7 @@ void Game::play()
                         }
 
                         // saving the updated score list to the text file
-                        highscores_w.open("/home/lennardmarx/UTwente/Programming/Snake/highscores/highscores.txt");
+                        highscores_w.open("/home/lennardmarx/UTwente/Programming/Snake/highscores.txt");
                         for (const auto &i : highscores)
                         {
                             highscores_w << i << '\t';
