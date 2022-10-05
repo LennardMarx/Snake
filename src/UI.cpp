@@ -5,7 +5,7 @@
  *  MODIFIED!
  */
 
-#include "/home/lennardmarx/UTwente/Programming/Snake/include/UI.h"
+#include "../include/UI.h"
 
 // constructor
 UI::UI(int sizeX, int sizeY) : sizeX(sizeX), sizeY(sizeY)

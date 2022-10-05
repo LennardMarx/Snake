@@ -17,9 +17,17 @@ public:
 
     void rectPosition(int, int, int, int);
 
+    // void setFont(const char *);
+    const char *getFont();
+
 private:
     SDL_Rect Text_rect;
-    TTF_Font *myFont = TTF_OpenFont("/home/lennardmarx/UTwente/Programming/Snake/Images/RetroGaming.ttf", 32);
+
+    std::string base_path = SDL_GetBasePath();
+    std::string rel_path = "Images/RetroGaming.ttf";
+    std::string total_path = base_path + rel_path;
+    const char *path = total_path.c_str();
+    TTF_Font *myFont = TTF_OpenFont(path, 32);
 
     // choice of text colors
     SDL_Color White = {255, 255, 255, 255};

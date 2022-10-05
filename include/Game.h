@@ -13,8 +13,8 @@
 #include <fstream>
 #include <algorithm>
 
-#include "/home/lennardmarx/UTwente/Programming/Snake/include/GameObjects.h"
-#include "/home/lennardmarx/UTwente/Programming/Snake/include/UI.h"
+#include "../include/GameObjects.h"
+#include "../include/UI.h"
 #include "../include/ResourceManager.hpp"
 #include "../include/TexturedRectangle.hpp"
 #include "../include/Text.h"

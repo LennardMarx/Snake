@@ -1,10 +1,13 @@
 #include "Game.h"
+#include <unistd.h>
 
 Game::Game(){};
 Game::~Game(){};
 
 void Game::play()
 {
+    chdir(SDL_GetBasePath());
+
     const int FPS = 10;                // set FPS
     const int frameDelay = 1000 / FPS; // delay according to FPS
     Uint32 frameStart;                 // keeps track of time (?)
@@ -36,10 +39,10 @@ void Game::play()
 
     std::string lastDirection;
 
-    // Menu Stuff
-    TexturedRectangle main_menu(gui.getRenderer(), "/home/lennardmarx/UTwente/Programming/Snake/Images/Menu.bmp");
-    TexturedRectangle start_game_image(gui.getRenderer(), "/home/lennardmarx/UTwente/Programming/Snake/Images/StartGame.bmp");
-    TexturedRectangle highscores_image(gui.getRenderer(), "/home/lennardmarx/UTwente/Programming/Snake/Images/Highscores.bmp");
+    //  Menu Stuff
+    TexturedRectangle main_menu(gui.getRenderer(), "Images/Menu.bmp");
+    TexturedRectangle start_game_image(gui.getRenderer(), "Images/StartGame.bmp");
+    TexturedRectangle highscores_image(gui.getRenderer(), "Images/Highscores.bmp");
 
     int xMouse, yMouse;
 
@@ -47,18 +50,18 @@ void Game::play()
 
     // Using SDL_ttf
     TTF_Init();
+
     Text gamePaused("Game Paused!", 35, 70, 120, 25, 'w', gui);
     Text gameOver("Game Over!", 25, 50, 130, 30, 'w', gui);
     Text gameOverMenu("Main Menu", 35, 110, 100, 20, 'w', gui);
     Text gameOverMenuYellow("Main Menu", 35, 110, 100, 20, 'y', gui);
 
     // highscores
-
     bool score_check = false;
     std::ofstream highscores_w;
     std::vector<int> highscores;
     int highscore;
-    std::ifstream highscores_r("/home/lennardmarx/UTwente/Programming/Snake/highscores.txt");
+    std::ifstream highscores_r("highscores.txt");
     while (highscores_r >> highscore)
     {
         highscores.push_back(highscore);
@@ -71,7 +74,7 @@ void Game::play()
 
         lastDirection = snakeHead.getDirection(); // DOESNT WORK YET -> updates frequently rewrite the pause (not just stop the snake but stop game)
 
-        if (pause) // pause the game
+        if (pause && !menu && !game_over) // pause the game
         {
             gamePaused.renderCopy(gui); // render text for paused game
             gui.present();
@@ -259,7 +262,7 @@ void Game::play()
                         }
 
                         // saving the updated score list to the text file
-                        highscores_w.open("/home/lennardmarx/UTwente/Programming/Snake/highscores.txt");
+                        highscores_w.open("highscores.txt");
                         for (const auto &i : highscores)
                         {
                             highscores_w << i << '\t';

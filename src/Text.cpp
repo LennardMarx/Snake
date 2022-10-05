@@ -40,3 +40,13 @@ void Text::rectPosition(int _x, int _y, int _w, int _h)
     Text_rect.w = _w; // controls the width of the rect
     Text_rect.h = _h; // controls the height of the rect
 }
+
+// void Text::setFont(const char *_font)
+// {
+//     myFont = TTF_OpenFont(_font, 32);
+// }
+
+const char *Text::getFont()
+{
+    return path;
+}

@@ -4,7 +4,6 @@
             "name": "Linux",
             "includePath": [
                 "${workspaceFolder}/**",
-                // "/home/lennardmarx/UTwente/Programming/Snake/inlcude/",
                 "/usr/include/SDL2"
             ],
             "defines": [],

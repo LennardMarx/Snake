@@ -5,7 +5,7 @@
 
 #include <utility>
 #include <string>
-#include "/home/lennardmarx/UTwente/Programming/Snake/include/UI.h"
+#include "../include/UI.h"
 
 //=============== Apple =============================================
 
