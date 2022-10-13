@@ -26,6 +26,7 @@ void Apple::drawApple(UI &ui)
 }
 
 //============= Snake Segment ======================
+// Segments follow the movement of the snake head (or the movement of the previous segment)
 
 SnakeSegment::SnakeSegment() // constructor
 {
@@ -66,6 +67,8 @@ void SnakeSegment::drawSegment(UI &ui)
 }
 
 //================ Snake Head ==================================
+// inherited from the snake segment class
+// can additionally move around from user input
 
 SnakeHead::SnakeHead() {} // : SnakeSegment() {}
 SnakeHead::~SnakeHead() {}
@@ -133,7 +136,7 @@ void SnakeHead::moveSnake(UI &ui)
     }
 }
 
-// overridden drawSegment to have head bigger than segments
+// overridden drawSegment to have head bigger than segments (polymorphism)
 void SnakeHead::drawSegment(UI &ui)
 {
     ui.drawPixel(x, y);

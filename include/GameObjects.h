@@ -28,6 +28,7 @@ private:
 };
 
 //=============== Snake Segment ==================================
+// Segments follow the movement of the snake head (or the movement of the previous segment)
 
 class SnakeSegment
 {
@@ -51,7 +52,8 @@ protected:
 };
 
 //=============== Snake Head ====================================
-// inherited from SnakeSegment
+// inherited from the Snake Segment class
+// can additionally move around from user input
 
 class SnakeHead : public SnakeSegment
 {
