@@ -2,8 +2,8 @@
 // credit for this code to Mike Shah
 // https://github.com/MikeShah/SDL2_Tutorials
 //
-// non-trivial changes were done to adjust to code for our needs
-// e.g. rotation of the animated image
+// changes where made to the original version
+// methods to create a textured rectangle, used for the main menu
 //===============================================================
 
 #include <string>

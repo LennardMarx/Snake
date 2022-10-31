@@ -1,8 +1,11 @@
+In this project I build the classic "Snake Game" in C++ while using the SDL2 (Simple DirectMedia Layer 2) library for visualization.
+The interface is navigatalble via the mouse, the game is played with the arrow keys.
+
 Building the Snake Game
 
 Assumptions:
 
-1. You are on a Linux system or in a Virtual Box rnning Linux
+1. You are on a Linux system or in a Virtual Box running Linux
 2. You have C++ and the g++ compiler installed
 
 Preceding steps:
@@ -31,3 +34,4 @@ Preceding steps:
 Now you can run the game with the following command:
 
     $ ./snake
+    

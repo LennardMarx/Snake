@@ -1,3 +1,7 @@
+//===============================================================
+// Declaration of the Text class to print text on the screen
+//===============================================================
+
 #pragma once
 #ifndef TEXT_H
 #define TEXT_H

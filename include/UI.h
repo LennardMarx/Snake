@@ -2,7 +2,9 @@
  *  Created on: May 14, 2018
  *      Author: Johan Engelen
  *  Ported from D source by same author.
- *  MODIFIED!
+ *  Heavily modified by me!
+ * 
+ *  Declatation of the UI class to create an interface
  */
 
 #ifndef SRC_UI_H_

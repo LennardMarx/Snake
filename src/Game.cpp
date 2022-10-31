@@ -1,3 +1,7 @@
+//===============================================================
+// Methods of the Game class including all the game logic
+//===============================================================
+
 #include "Game.h"
 #include <unistd.h>
 
@@ -45,8 +49,6 @@ void Game::play()
     TexturedRectangle highscores_image(gui.getRenderer(), "Images/Highscores.bmp");
 
     int xMouse, yMouse;
-
-    // noch ein test
 
     // Using SDL_ttf
     TTF_Init();

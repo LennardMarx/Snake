@@ -1,3 +1,7 @@
+//===============================================================
+// Declaration of the Game class including all game logic
+//===============================================================
+
 #pragma once
 #ifndef GAME_H
 #define GAME_H

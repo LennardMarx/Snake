@@ -2,7 +2,10 @@
  *  Created on: May 14, 2018
  *      Author: Johan Engelen
  *  Ported from D source by same author.
- *  MODIFIED!
+ *  Heavily modified by me!
+ * 
+ *  Methods to inizialize the UI with the window and renderer
+ *  as well as methods to draw pixels manually on the screen.
  */
 
 #include "../include/UI.h"
@@ -10,17 +13,17 @@
 // constructor
 UI::UI(int sizeX, int sizeY) : sizeX(sizeX), sizeY(sizeY)
 {
-    initialize(sizeX, sizeY);
+    initialize(sizeX, sizeY); // calling the initialize method with the given size
 }
 
 // destructor
 UI::~UI()
 {
     if (renderer)
-        SDL_DestroyRenderer(renderer);
+        SDL_DestroyRenderer(renderer); // clean up renderer
     if (window)
-        SDL_DestroyWindow(window);
-    SDL_Quit();
+        SDL_DestroyWindow(window); // clean up window
+    SDL_Quit(); // quit SDL2
 }
 
 // making everything black
